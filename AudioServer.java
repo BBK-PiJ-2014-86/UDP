@@ -44,18 +44,6 @@ public class AudioServer implements Runnable {
 		
 			   PrintWriter out = new PrintWriter (socket.getOutputStream());
 			   BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		
-			 
-			 assignUniqueId();
-			 
-			if(checkIfFirst()) {
-				StreamFromFirstClient();
-			} else {
-				StreamToRestOfClients();
-			}
-			 
-			 
-			 
 			 
 		 } catch (IOException e) {
 			e.printStackTrace();
@@ -82,14 +70,8 @@ public class AudioServer implements Runnable {
 		
 	}
 
-	private static boolean checkIfFirst() {
-		
-		
-		return first;
-		
-		
-	}
 
-	}
+
+}
 	 
 
