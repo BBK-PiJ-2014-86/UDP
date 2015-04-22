@@ -15,9 +15,15 @@ import java.net.Socket;
 
 public class AudioServer implements Runnable {
 	
-	private static boolean switchIfFirst = true; // this variable will act as a 'switch' to identify if first.
+	private static boolean switchIfFirst = true; // this variable will act as a 'switch' to identify if first and is static to the class
 	private boolean isFirst; // variable to capture if the socket / thread is first
 	private Socket socket; 
+	
+	/**
+	 * The constructor creates an AudioServer with passed Socket as an object parameter. It sets the field isFirst to true or false
+	 * depending on whether the thread / client request is first
+	 * @param socket
+	 */
 	
 	public AudioServer (Socket socket) {
 		this.socket = socket;
