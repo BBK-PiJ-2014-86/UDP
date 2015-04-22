@@ -9,21 +9,28 @@ import java.net.Socket;
 
 /**
  * @author Andrean Georgiev, 13013741
- 
  *This class handles TCP connection on server side in a client-server architecture. 
  *
  */
 
 public class AudioServer implements Runnable {
 	
-	private static boolean first = true; // this variable will act as a 'switch' to identify if first.
+	private static boolean switchIfFirst = true; // this variable will act as a 'switch' to identify if first.
+	private boolean isFirst = false; // variable to capture if the socket / thread is first
+	private Socket socket; 
+	
+	public AudioServer (Socket socket) {
+		this.socket = socket;
+		if (switchIfFirst) {
+			
+		}
+		
+	}
 	
 	public void run () {
 
 		 try  {
-		 
-		       ServerSocket server = new ServerSocket (PORT);
-			   Socket socket = server.accept();
+		
 			   PrintWriter out = new PrintWriter (socket.getOutputStream());
 			   BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		
