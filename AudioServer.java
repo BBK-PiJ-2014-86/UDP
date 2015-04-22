@@ -16,13 +16,18 @@ import java.net.Socket;
 public class AudioServer implements Runnable {
 	
 	private static boolean switchIfFirst = true; // this variable will act as a 'switch' to identify if first.
-	private boolean isFirst = false; // variable to capture if the socket / thread is first
+	private boolean isFirst; // variable to capture if the socket / thread is first
 	private Socket socket; 
 	
 	public AudioServer (Socket socket) {
 		this.socket = socket;
+		
+		// check if switchIfFirst is true - if so this will be the thread handling the first client request
 		if (switchIfFirst) {
-			
+			isFirst = true;
+			switchIfFirst = false;
+		} else {
+			isFirst = false;
 		}
 		
 	}
