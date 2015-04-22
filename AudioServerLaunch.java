@@ -32,10 +32,9 @@ public class AudioServerLaunch {
 			try {
 				
 				Socket socket = server.accept();
-				executor.execute(new AudioServer(socket));
+				executor.submit(new AudioServer(socket));
 
 			} catch (IOException e) {
-				
 				e.printStackTrace();
 			}
 			 
