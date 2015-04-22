@@ -14,9 +14,8 @@ import java.net.Socket;
  *
  */
 
-public class AudioServer {
+public class AudioServer implements Runnable {
 	
-	private static final int PORT = 12321; // server will listen on randomly selected port which is > 1024
 	private static boolean first = true; // this variable will act as a 'switch' to identify if first.
 	
 	public void run () {
