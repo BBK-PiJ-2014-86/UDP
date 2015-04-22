@@ -19,20 +19,24 @@ public class AudioServerLaunch {
 	
 	public static void main (String [] args) {
 		
+		try {
+		server = new ServerSocket (PORT);
+		
 		while (true) {
 			
 			try {
-				server = new ServerSocket (PORT);
+				
 				Socket socket = server.accept();
-				
-				
 
 			} catch (IOException e) {
-				System.out.println("Server could not connect. Port is in use.");
+				
 				e.printStackTrace();
 			}
 			 
 		}
+	 } catch (Exception e) {
+		 e.printStackTrace();
+		 System.out.println("Server could not connect. Port is in use.");
 	 }
 }
 	 
