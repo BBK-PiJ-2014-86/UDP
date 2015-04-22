@@ -21,11 +21,13 @@ public class AudioServer {
 	
 	public void run () {
 
-		 try ( ServerSocket server = new ServerSocket (PORT);
+		 try  {
+		 
+		       ServerSocket server = new ServerSocket (PORT);
 			   Socket socket = server.accept();
 			   PrintWriter out = new PrintWriter (socket.getOutputStream());
 			   BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-		) {
+		
 			 
 			 assignUniqueId();
 			 
@@ -46,12 +48,12 @@ public class AudioServer {
 	 }
 
 	private void StreamToRestOfClients() {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
 	private void StreamFromFirstClient() {
-		// TODO Auto-generated method stub
+
 		
 	}
 
