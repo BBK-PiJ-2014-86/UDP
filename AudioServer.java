@@ -18,6 +18,8 @@ public class AudioServer implements Runnable {
 	private static boolean switchIfFirst = true; // this variable will act as a 'switch' to identify if first and is static to the class
 	private boolean isFirst; // variable to capture if the socket / thread is first
 	private Socket socket; 
+	private PrintWriter out; // output to socket
+	private BufferedReader in;// input to socket
 	
 	/**
 	 * The constructor creates an AudioServer with passed Socket as an object parameter. It sets the field isFirst to true or false
@@ -42,8 +44,8 @@ public class AudioServer implements Runnable {
 
 		 try  {
 		
-			   PrintWriter out = new PrintWriter (socket.getOutputStream());
-			   BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			   out = new PrintWriter (socket.getOutputStream());
+			   in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			 
 		 } catch (IOException e) {
 			e.printStackTrace();
