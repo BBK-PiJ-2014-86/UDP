@@ -22,7 +22,7 @@ public class AudioServer implements Runnable {
 	private Socket socket; 
 	private PrintWriter out; // output to socket
 	private BufferedReader in;// input to socket
-	Set <Integer> uniqueIdList; // set to hold Ids
+	private static Set <Integer> uniqueIdList; // set to hold Ids
 	
 	/**
 	 * The constructor creates an AudioServer with passed Socket as an object parameter. It sets the field isFirst to true or false
@@ -47,8 +47,15 @@ public class AudioServer implements Runnable {
 
 		 try  {
 			   out = new PrintWriter (socket.getOutputStream());
-			   in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			   in = new BufferedReader(new InputStreamReader(socket.getInputStream()));  
+			   int id = assignUniqueId();
+			   out.println(id);
 			   
+			   if (isFirst) { 
+				   StreamFromFirstClient();
+			   } else {
+				   StreamToRestOfClients();
+			   }
 			 
 		 } catch (IOException e) {
 			e.printStackTrace();
