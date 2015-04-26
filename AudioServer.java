@@ -82,16 +82,6 @@ public class AudioServer implements Runnable {
 		
 	}
 
-	private static int assignUniqueId() {
-		
-		id = idTrack;
-		idTrack++;
-		
-		return 0;
-		
-		
-	}
-
 
 
 }
