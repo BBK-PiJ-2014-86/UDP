@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
@@ -31,6 +32,8 @@ public class AudioServer implements Runnable {
 	private Integer id;
 	private DatagramSocket udpSocket;
 	private DatagramPacket udpPacket;
+	private int udpPacketPort; 
+	private InetAddress udpPacketInetAddress;
 	
 	/**
 	 * The constructor creates an AudioServer with passed Socket as an object parameter. It sets the field isFirst to true or false
@@ -86,10 +89,27 @@ public class AudioServer implements Runnable {
 
 		out.println(isFirst);
 		
+		/* need to find a way to get the size of the file to be transmitted and create an array of the
+		 * appropriate size
+		 */
+		String sizeOfFile = null;
 		try {
+			sizeOfFile = in.readLine();
+		} catch (IOException e1) {
+			
+			e1.printStackTrace();
+		}
+		
+		int size = Integer.parseInt(sizeOfFile);
+		
+		try {
+			byte [] buf = new byte [size];
+			udpPacket = new DatagramPacket(buf, buf.length);
 			udpSocket = new DatagramSocket (13131);
-			udpSocket.receive(p);
+			udpSocket.receive(udpPacket);
 		} catch (SocketException e) {			
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
