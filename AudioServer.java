@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
@@ -26,6 +27,7 @@ public class AudioServer implements Runnable {
 	private static Set <Integer> uniqueIdList = new HashSet<Integer>();; // set to hold Ids
 	private static int idTrack=0;
 	private Integer id;
+	private DatagramSocket udpSocket;
 	
 	/**
 	 * The constructor creates an AudioServer with passed Socket as an object parameter. It sets the field isFirst to true or false
@@ -79,6 +81,8 @@ public class AudioServer implements Runnable {
 
 	private void StreamFromFirstClient() {
 
+		out.println(isFirst);
+		
 		
 	}
 
