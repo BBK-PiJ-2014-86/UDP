@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,7 +23,9 @@ public class AudioServer implements Runnable {
 	private Socket socket; 
 	private PrintWriter out; // output to socket
 	private BufferedReader in;// input to socket
-	private static Set <Integer> uniqueIdList; // set to hold Ids
+	private static Set <Integer> uniqueIdList = new HashSet<Integer>();; // set to hold Ids
+	private static int idTrack=0;
+	private Integer id;
 	
 	/**
 	 * The constructor creates an AudioServer with passed Socket as an object parameter. It sets the field isFirst to true or false
@@ -41,6 +44,12 @@ public class AudioServer implements Runnable {
 			isFirst = false;
 		}
 		
+		// assign id to audioserver
+		
+		id = idTrack;
+		idTrack++;
+		uniqueIdList.add(id);
+		
 	}
 	
 	public void run () {
@@ -48,7 +57,6 @@ public class AudioServer implements Runnable {
 		 try  {
 			   out = new PrintWriter (socket.getOutputStream());
 			   in = new BufferedReader(new InputStreamReader(socket.getInputStream()));  
-			   int id = assignUniqueId();
 			   out.println(id);
 			   
 			   if (isFirst) { 
@@ -76,6 +84,8 @@ public class AudioServer implements Runnable {
 
 	private static int assignUniqueId() {
 		
+		id = idTrack;
+		idTrack++;
 		
 		return 0;
 		
